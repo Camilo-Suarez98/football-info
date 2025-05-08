@@ -1,10 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const myHeaders = new Headers();
+    myHeaders.append("x-rapidapi-key", import.meta.env.VITE_API_FOOTBALL_KEY);
+    myHeaders.append("x-rapidapi-host", import.meta.env.VITE_FOOTBALL_URL);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: 'follow'
+    }
+
+    const fetchData = async () => {
+      const urlData = await fetch("https://v3.football.api-sports.io/teams?country=spain", requestOptions);
+      const res = await urlData.json();
+      setData(res);
+    }
+
+    fetchData();
+  }, [setData]);
+
+  console.log(data);
 
   return (
     <>
