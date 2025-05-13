@@ -1,10 +1,6 @@
-import { useContext } from 'react';
 import './App.css';
-import { FetchContext } from './Context/FetchContext';
 
 function App() {
-  const { country, setCountry, data } = useContext(FetchContext);
-
   return (
     <>
       <h1>Vite + React</h1>

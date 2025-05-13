@@ -16,7 +16,7 @@ export const FetchContext = createContext<FetchContextProps | null>(null);
 
 export const FecthProvider = ({ children }: React.PropsWithChildren) => {
   const [data, setData] = useState([]);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("spain");
 
   useEffect(() => {
     if (!country) return;
