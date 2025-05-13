@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 type FetchContextProps = {
-  data: [],
+  data: never[],
   country: string,
   setCountry: React.Dispatch<React.SetStateAction<string>>
 };
@@ -16,7 +16,7 @@ export const FetchContext = createContext<FetchContextProps | null>(null);
 
 export const FecthProvider = ({ children }: React.PropsWithChildren) => {
   const [data, setData] = useState([]);
-  const [country, setCountry] = useState("spain");
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     if (!country) return;
