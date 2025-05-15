@@ -1,16 +1,39 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useContext } from 'react'
-import { FetchContext } from '../Context/FetchContext'
+import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { getTeamsByCountry } from '../quieries/getTeamsByCountry';
+
+type TeamInfoProps = {
+  team: {
+    id: number,
+    name: string,
+    logo: string
+  }
+}
 
 export const Route = createFileRoute('/')({
   component: Index,
 })
 
 function Index() {
-  const { country, setCountry, data } = useContext(FetchContext);
+  const [input, setInput] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [data, setData] = useState<TeamInfoProps[]>([]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCountry(input.trim());
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [input]);
+
+  useEffect(() => {
+    getTeamsByCountry(country)
+      .then(setData)
+  }, [country]);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(e.target.value);
+    setInput(e.target.value);
   }
 
   return (
@@ -20,7 +43,7 @@ function Index() {
         <input
           id="country"
           type="text"
-          value={country}
+          value={input}
           onChange={handleInputValue}
           required
         />
