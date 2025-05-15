@@ -8,7 +8,6 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { country, setCountry, data } = useContext(FetchContext);
-  console.log(data);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCountry(e.target.value);
