@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useState } from 'react';
-import { getTeamsByCountry } from '../quieries/getTeamsByCountry';
+import { useState } from 'react';
+import { getTeamsByCountry } from '../queries/getTeamsByCountry';
 
 type TeamInfoProps = {
   team: {
@@ -17,10 +17,6 @@ export const Route = createFileRoute('/')({
 function Index() {
   const [country, setCountry] = useState<string>("");
   const [data, setData] = useState<TeamInfoProps[]>([]);
-
-  // useEffect(() => {
-  //   handleSubmit(country);
-  // }, [country]);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCountry(e.target.value);
