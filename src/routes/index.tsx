@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { getTeamsByCountry } from '../queries/getTeamsByCountry';
 
 type TeamInfoProps = {
   team: {
-    id: number,
+    id: string,
     name: string,
     logo: string
   }
@@ -51,10 +51,14 @@ function Index() {
         </label>
       </form>
       {data.slice(0, 20).map((info) => (
-        <div key={info.team.id}>
+        <Link
+          to='/team-detail/$teamName'
+          params={{ teamName: info.team.name.toLocaleLowerCase() }}
+          key={info.team.id}
+        >
           <h3>{info.team.name}</h3>
           <img src={info.team.logo} alt="Team logo" />
-        </div>
+        </Link>
       ))}
     </div>
   )
