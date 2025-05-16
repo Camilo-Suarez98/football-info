@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { getTeamsByCountry } from '../queries/getTeamsByCountry';
 
-type TeamInfoProps = {
+type TeamsInfoProps = {
   team: {
     id: string,
     name: string,
@@ -16,7 +16,7 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const [country, setCountry] = useState<string>("");
-  const [data, setData] = useState<TeamInfoProps[]>([]);
+  const [data, setData] = useState<TeamsInfoProps[]>([]);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCountry(e.target.value);
