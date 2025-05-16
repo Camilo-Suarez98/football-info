@@ -15,39 +15,45 @@ export const Route = createFileRoute('/')({
 })
 
 function Index() {
-  const [input, setInput] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [data, setData] = useState<TeamInfoProps[]>([]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCountry(input.trim());
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, [input]);
-
-  useEffect(() => {
-    getTeamsByCountry(country)
-      .then(setData)
-  }, [country]);
+  // useEffect(() => {
+  //   handleSubmit(country);
+  // }, [country]);
 
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  }
+    setCountry(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const value = country.trim();
+    if (!value) return;
+
+    try {
+      const teams = await getTeamsByCountry(value);
+      setData(teams);
+    } catch (error) {
+      throw new Error(`The next error just happend: ${error}`);
+    }
+    setCountry("");
+  };
 
   return (
     <div>
-      <label htmlFor="country">
-        Type a Country name:
-        <input
-          id="country"
-          type="text"
-          value={input}
-          onChange={handleInputValue}
-          required
-        />
-      </label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="country">
+          Type a Country name:
+          <input
+            id="country"
+            type="text"
+            value={country}
+            onChange={handleInputValue}
+            required
+          />
+        </label>
+      </form>
       {data.slice(0, 20).map((info) => (
         <div key={info.team.id}>
           <h3>{info.team.name}</h3>
