@@ -38,7 +38,7 @@ function Index() {
 
   return (
     <div>
-      <h1 className='text-4xl text-red-500'>Football Teams</h1>
+      <h1>Football Teams</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="country">
           Type a Country name:
