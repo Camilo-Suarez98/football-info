@@ -1,8 +1,4 @@
-type RequestOptionsProps = {
-  method: string,
-  headers: Headers,
-  redirect: RequestRedirect | undefined
-};
+import type { RequestOptionsProps } from "../types/RequestOptions";
 
 export const getTeamsByCountry = async (country: string) => {
   const myHeaders = new Headers();

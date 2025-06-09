@@ -11,15 +11,22 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
+import { Route as SearchTeamsByCountryImport } from './routes/search-teams-by-country'
+import { Route as SearchTeamByNameImport } from './routes/search-team-by-name'
 import { Route as IndexImport } from './routes/index'
 import { Route as TeamDetailTeamNameImport } from './routes/team-detail/$teamName'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
+const SearchTeamsByCountryRoute = SearchTeamsByCountryImport.update({
+  id: '/search-teams-by-country',
+  path: '/search-teams-by-country',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SearchTeamByNameRoute = SearchTeamByNameImport.update({
+  id: '/search-team-by-name',
+  path: '/search-team-by-name',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,11 +53,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/search-team-by-name': {
+      id: '/search-team-by-name'
+      path: '/search-team-by-name'
+      fullPath: '/search-team-by-name'
+      preLoaderRoute: typeof SearchTeamByNameImport
+      parentRoute: typeof rootRoute
+    }
+    '/search-teams-by-country': {
+      id: '/search-teams-by-country'
+      path: '/search-teams-by-country'
+      fullPath: '/search-teams-by-country'
+      preLoaderRoute: typeof SearchTeamsByCountryImport
       parentRoute: typeof rootRoute
     }
     '/team-detail/$teamName': {
@@ -67,41 +81,59 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/search-team-by-name': typeof SearchTeamByNameRoute
+  '/search-teams-by-country': typeof SearchTeamsByCountryRoute
   '/team-detail/$teamName': typeof TeamDetailTeamNameRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/search-team-by-name': typeof SearchTeamByNameRoute
+  '/search-teams-by-country': typeof SearchTeamsByCountryRoute
   '/team-detail/$teamName': typeof TeamDetailTeamNameRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/search-team-by-name': typeof SearchTeamByNameRoute
+  '/search-teams-by-country': typeof SearchTeamsByCountryRoute
   '/team-detail/$teamName': typeof TeamDetailTeamNameRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/team-detail/$teamName'
+  fullPaths:
+    | '/'
+    | '/search-team-by-name'
+    | '/search-teams-by-country'
+    | '/team-detail/$teamName'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/team-detail/$teamName'
-  id: '__root__' | '/' | '/about' | '/team-detail/$teamName'
+  to:
+    | '/'
+    | '/search-team-by-name'
+    | '/search-teams-by-country'
+    | '/team-detail/$teamName'
+  id:
+    | '__root__'
+    | '/'
+    | '/search-team-by-name'
+    | '/search-teams-by-country'
+    | '/team-detail/$teamName'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  SearchTeamByNameRoute: typeof SearchTeamByNameRoute
+  SearchTeamsByCountryRoute: typeof SearchTeamsByCountryRoute
   TeamDetailTeamNameRoute: typeof TeamDetailTeamNameRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  SearchTeamByNameRoute: SearchTeamByNameRoute,
+  SearchTeamsByCountryRoute: SearchTeamsByCountryRoute,
   TeamDetailTeamNameRoute: TeamDetailTeamNameRoute,
 }
 
@@ -116,15 +148,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
+        "/search-team-by-name",
+        "/search-teams-by-country",
         "/team-detail/$teamName"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/search-team-by-name": {
+      "filePath": "search-team-by-name.tsx"
+    },
+    "/search-teams-by-country": {
+      "filePath": "search-teams-by-country.tsx"
     },
     "/team-detail/$teamName": {
       "filePath": "team-detail/$teamName.tsx"
