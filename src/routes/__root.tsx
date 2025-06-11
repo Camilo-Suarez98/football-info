@@ -8,6 +8,12 @@ export const Route = createRootRoute({
         <Link to="/" className="[&.active]:font-bold">
           Home
         </Link>
+        <Link to="/search-team-by-name" className="[&.active]:font-bold">
+          Teams by Name
+        </Link>
+        <Link to="/search-teams-by-country" className="[&.active]:font-bold">
+          Teams by Country
+        </Link>
       </div>
       <hr />
       <Outlet />
