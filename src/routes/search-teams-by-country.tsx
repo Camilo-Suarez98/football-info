@@ -38,28 +38,32 @@ function RouteComponent() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='text-center'>
         <label htmlFor="country">
-          Type a Country name:
+          Type a country name:
           <input
-            id="country"
-            type="text"
+            id='country'
+            type='text'
+            className='ml-4 p-2 border-2 border-[#646cff] rounded-md'
             value={country}
             onChange={handleInputValue}
             required
           />
         </label>
       </form>
-      {data.slice(0, 20).map((info) => (
-        <Link
-          to='/team-detail/$teamName'
-          params={{ teamName: info.team.name.toLocaleLowerCase() }}
-          key={info.team.id}
-        >
-          <h3>{info.team.name}</h3>
-          <img src={info.team.logo} alt="Team logo" />
-        </Link>
-      ))}
+      <div className='grid grid-cols-3'>
+        {data.slice(0, 20).map((info) => (
+          <Link
+            to='/team-detail/$teamName'
+            params={{ teamName: info.team.name.toLocaleLowerCase() }}
+            key={info.team.id}
+            className='flex flex-col justify-center items-center'
+          >
+            <h3>{info.team.name}</h3>
+            <img src={info.team.logo} alt="Team logo" />
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }
