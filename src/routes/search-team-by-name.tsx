@@ -41,7 +41,7 @@ function RouteComponent() {
     <div>
       <form onSubmit={handleSubmit} className='text-center'>
         <label htmlFor="country">
-          Type a country name:
+          Type a team name:
           <input
             id='country'
             type='text'
