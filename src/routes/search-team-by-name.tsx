@@ -37,9 +37,6 @@ function RouteComponent() {
     setTeamName("");
   }
 
-  console.log('data', data);
-
-
   return (
     <div>
       <form onSubmit={handleSubmit} className='text-center'>
