@@ -1,6 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { getTeamById } from '../../queries/getTeamById';
+import { createFileRoute } from '@tanstack/react-router';
+import { getTeamById } from '@/queries/getTeamById';
 
 type TeamInfoProps = {
   team: {

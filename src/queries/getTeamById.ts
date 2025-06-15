@@ -1,4 +1,4 @@
-import type { RequestOptionsProps } from "../types/RequestOptions";
+import type { RequestOptionsProps } from "@/types/RequestOptions";
 
 export const getTeamById = async (teamName: string) => {
   const myHeaders = new Headers();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { getTeamsByCountry } from '../queries/getTeamsByCountry';
+import { getTeamsByCountry } from '@/queries/getTeamsByCountry';
 
 export const Route = createFileRoute('/search-teams-by-country')({
   component: RouteComponent,
