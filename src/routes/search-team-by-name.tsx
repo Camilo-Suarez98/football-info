@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { getTeamsByName } from '../queries/getTeamsByName';
+import { getTeamById } from '../queries/getTeamById';
 
 export const Route = createFileRoute('/search-team-by-name')({
   component: RouteComponent,
@@ -29,13 +29,16 @@ function RouteComponent() {
     if (!value) return;
 
     try {
-      const teams = await getTeamsByName(value);
+      const teams = await getTeamById(value);
       setData(teams);
     } catch (error) {
       throw new Error(`The next error just happend: ${error}`);
     }
     setTeamName("");
   }
+
+  console.log('data', data);
+
 
   return (
     <div>
