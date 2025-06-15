@@ -52,7 +52,7 @@ function RouteComponent() {
           />
         </label>
       </form>
-      <div className='grid grid-cols-3'>
+      <div>
         {data.slice(0, 20).map((info) => (
           <Link
             to='/team-detail/$teamName'
