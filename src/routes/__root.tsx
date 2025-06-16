@@ -14,7 +14,6 @@ export const Route = createRootRoute({
           Teams by Country
         </Link>
       </div>
-      <hr />
       <Outlet />
     </>
   ),
