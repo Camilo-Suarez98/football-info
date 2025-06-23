@@ -19,7 +19,7 @@ function Index() {
           target='_blank'
           className='text-[#F1C40F]'
         >Fooball Api</a> {' '}
-        to provide the information about countries and teams
+        to provide all the information
       </p>
       <div className='flex justify-center items-center gap-5 mt-4'>
         <Link
